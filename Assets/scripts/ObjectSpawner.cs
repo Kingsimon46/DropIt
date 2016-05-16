@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ObjectSpawner : MonoBehaviour {
 
+    public GameObject spawnPoint;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -10,6 +12,11 @@ public class ObjectSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
+
+    void spawnNewDrop()
+    {
+        
+    }
 }
