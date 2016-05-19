@@ -2,9 +2,15 @@
 using System.Collections;
 
 public class DropCollision : MonoBehaviour {
-    
+
+
+    public LevelController lvlController;
+
+
 	// Use this for initialization
 	void Start () {
+
+        lvlController = GameObject.Find("LevelController").GetComponent<LevelController>();
 
     }
 	
@@ -26,7 +32,8 @@ public class DropCollision : MonoBehaviour {
             Debug.Log("Same Color detected!!");
 
             // Next drop
-            LevelController.StartNewCycle();
+
+            lvlController.StartNewCycle(gameObject);
 
         }
         else

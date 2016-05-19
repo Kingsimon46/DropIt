@@ -22,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour {
 
     }
 
-    void spawnNewDrop()
+    public void spawnNewDrop()
     {
         transform.position = new Vector3(generationPoint.transform.position.x, generationPoint.transform.position.y, generationPoint.transform.position.z);
         //without Objectpooler//
