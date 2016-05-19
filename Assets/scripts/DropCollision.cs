@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class DropCollision : MonoBehaviour {
-
+    
 	// Use this for initialization
 	void Start () {
-	
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,11 +22,14 @@ public class DropCollision : MonoBehaviour {
         if (col.transform.GetComponent<Renderer>().material.color == this.GetComponent<Renderer>().material.color)
         {
             Debug.Log("Same Color detected!!");
-            // Next drop
 
-        }else
+            // Next drop
+            LevelController.StartNewCycle();
+
+        }
+        else
         {
-            //failed, wrong color
+            // failed, wrong color
         }
     }
 }
