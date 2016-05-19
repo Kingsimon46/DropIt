@@ -19,6 +19,8 @@ public class DropCollision : MonoBehaviour {
         //Debug.Log(col.gameObject.name);
         //Debug.Log(col.gameObject.GetComponent<Renderer>().material.color);
 
+        
+
         if (col.transform.GetComponent<Renderer>().material.color == this.GetComponent<Renderer>().material.color)
         {
             Debug.Log("Same Color detected!!");
