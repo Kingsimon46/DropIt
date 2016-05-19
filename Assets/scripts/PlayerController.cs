@@ -28,8 +28,6 @@ public class PlayerController : MonoBehaviour {
             if (maxUpDistance - movingDistance >= transform.position.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + movingDistance);
-                
-                Debug.Log("UpArrow");
             }
         }
 
