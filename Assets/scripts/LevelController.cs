@@ -5,6 +5,7 @@ public class LevelController : MonoBehaviour {
 
     public static LevelController instance;
 
+    public ColorChanger Cchanger;
     public ObjectSpawner ObjSpawner;
     private int points = 0;
     private int cycleCount = 1;
@@ -12,6 +13,9 @@ public class LevelController : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         ObjSpawner.spawnNewDrop();
+
+       
+
     }
 	
 	// Update is called once per frame
@@ -21,7 +25,7 @@ public class LevelController : MonoBehaviour {
 	}
 
     // Called after good color-check
-    public  void StartNewCycle(GameObject obj)
+    public void StartNewCycle(GameObject obj)
     {
         Debug.Log("Load New Level initated");
         // Call class for adding points
@@ -30,8 +34,10 @@ public class LevelController : MonoBehaviour {
         // Call ObjectSpawner to spawn new drop
         obj.SetActive(false);
         ObjSpawner.spawnNewDrop();
-    }
 
+
+
+    }
     void increaseDifficulty()
     {
 

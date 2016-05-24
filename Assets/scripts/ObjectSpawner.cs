@@ -7,10 +7,10 @@ public class ObjectSpawner : MonoBehaviour {
     public GameObject ObjectToSpawn;
     public Transform generationPoint;
     public ObjectPooler theObjectPool;
-    
+ 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
        
         
     }
@@ -31,6 +31,7 @@ public class ObjectSpawner : MonoBehaviour {
         GameObject newObject = theObjectPool.GetPooledObject();
         newObject.transform.position = generationPoint.transform.position;
         newObject.transform.rotation = generationPoint.transform.rotation;
+       
         newObject.SetActive(true);
     }
        

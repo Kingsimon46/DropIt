@@ -34,6 +34,7 @@ public class DropCollision : MonoBehaviour {
             // Next drop
 
             lvlController.StartNewCycle(gameObject);
+            
 
         }
         else
