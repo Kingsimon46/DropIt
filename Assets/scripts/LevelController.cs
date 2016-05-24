@@ -5,14 +5,19 @@ public class LevelController : MonoBehaviour {
 
     public static LevelController instance;
 
-    public ColorChanger Cchanger;
-    public ObjectSpawner ObjSpawner;
+    public ColorChanger cChanger;
+    public ObjectSpawner objSpawner;
+
     private int points = 0;
     private int cycleCount = 1;
 
     // Use this for initialization
 	void Start () {
-        ObjSpawner.spawnNewDrop();
+
+        cChanger = GameObject.Find("ColorChanger").GetComponent<ColorChanger>();
+        cChanger.setUp();
+
+        objSpawner.spawnNewDrop();
 
        
 
@@ -33,7 +38,7 @@ public class LevelController : MonoBehaviour {
         // Call ObjectPooler to remove current drop and setup platform for new cicle
         // Call ObjectSpawner to spawn new drop
         obj.SetActive(false);
-        ObjSpawner.spawnNewDrop();
+        objSpawner.spawnNewDrop();
 
 
 

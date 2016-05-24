@@ -6,45 +6,64 @@ public class ColorChanger : MonoBehaviour {
     //array for the colors, public so that u can set them in the inspector from within Unity.
     //public Color[] colors;
 
-    public GameObject ObjDatChangeColor;
-
-    public GameObject CC1;
-    public GameObject CC2;
-    public GameObject CC3;
-    public GameObject CC4;
-    public GameObject CC5;
-    public GameObject CC6;
-    public GameObject CC7;
-    public GameObject CC8;
-    public GameObject CC9;
-
-
-    Color[] colors = new Color[9];
-
-
-
-// Use this for initialization
+    // I don't get that var name :P
+    public GameObject objDatChangeColor;
+    
+    public GameObject[] platformCC = new GameObject[9];
+    public PlatformColor[] colors = new PlatformColor[9];
+    public Color32[] availColors = new Color32[9];
+    
     void Start () {
+        
+        Debug.Log("Start Color");
+        for (int i = 0; i < availColors.Length; i++)
+        {
+            Debug.Log(i + " Color");
+            colors[i] = new PlatformColor(availColors[i]);
+        }
 
-        colors[0] = new Color32(0, 0, 255, 255); //blue
-        colors[1] = new Color32(0, 255, 255, 255); //cyan
-        colors[2] = new Color32(255, 0, 0, 255); //red
-        colors[3] = new Color32(0, 255, 0, 255); //green
-        colors[4] = new Color32(255, 255, 51, 255); //yellow
-        colors[5] = new Color32(255, 255, 255, 255); //white
-        colors[6] = new Color32(127, 0, 255, 255); //purple
-        colors[7] = new Color32(127, 0, 255, 255); //purple
-        colors[8] = new Color32(127, 0, 255, 255); //purple
-        //Start Changing the Colors.        1f= after 1second ingame it starts, 1f = every 1 second after it is going to change again.
+        /*
+        //Start Changing the Colors. 1f= after 1second ingame it starts, 1f = every 1 second after it is going to change again.
         InvokeRepeating("ChangeCcColors", 1f, 1f);
-
+        */
     }
 
+    public void setUp()
+    {
+
+        //TODO: Randomize color choice
+        platformCC[1].GetComponent<Renderer>().material.color = colors[0].color;
+        colors[0].setActive(true);
+        platformCC[3].GetComponent<Renderer>().material.color = colors[1].color;
+        colors[1].setActive(true);
+        platformCC[4].GetComponent<Renderer>().material.color = colors[2].color;
+        colors[2].setActive(true);
+        platformCC[5].GetComponent<Renderer>().material.color = colors[3].color;
+        colors[3].setActive(true);
+        platformCC[7].GetComponent<Renderer>().material.color = colors[4].color;
+        colors[4].setActive(true);
+        
+    }
+
+    // Returns a random color value that is currently active on the platform
+    public void GetRandColor()
+    {
+
+        for (int i = 0; i < availColors.Length; i++)
+        {
+           /* if (availColors[i].isActive())
+            {
+                return availColors[i].color;
+            }
+            */
+        }
+        
+    }
    
 
 	public void ChangeColorOnDrop()
     {
-        ObjDatChangeColor.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
+        //ObjDatChangeColor.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
        
       
 
@@ -55,27 +74,7 @@ public class ColorChanger : MonoBehaviour {
     {
       
 
-
-            CC1.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC2.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC3.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC4.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC5.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC6.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC7.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC8.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-            CC9.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-        }
-       
-    
-
-
-        void Update()
-    {
-
-
     }
-
 }
     
   
