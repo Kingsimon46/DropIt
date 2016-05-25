@@ -28,7 +28,7 @@ public class ColorChanger : MonoBehaviour {
         */
     }
 
-    public void setUp()
+    public void SetUp()
     {
         //Starting blocks to color, 0 is top left block, 1 is top middle etc.
         int[] startingNum= new int[5];
