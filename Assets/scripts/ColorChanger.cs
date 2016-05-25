@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ColorChanger : MonoBehaviour {
 
@@ -37,12 +39,27 @@ public class ColorChanger : MonoBehaviour {
         startingNum[2] = 4;
         startingNum[3] = 5;
         startingNum[4] = 7;
-        
-        for (int i = 0; i < startingNum.Length; i++){
-            int rand = Random.Range(0, colors.Length);
 
-            platformCC[startingNum[i]].GetComponent<Renderer>().material.color = colors[rand].color;
+        List<Color32> usedColors = new List<Color32>();
+
+        for (int i = 0; i < startingNum.Length; i++){
+
+            Color32 randColor;
+            int rand;
+
+            do
+            {
+
+                rand = Random.Range(0, colors.Length);
+                randColor = colors[rand].color;
+
+            } while (usedColors.Contains(randColor));
+            
+
+            usedColors.Add(randColor);
+            platformCC[startingNum[i]].GetComponent<Renderer>().material.color = randColor;
             colors[rand].setActive(true);
+            
         }
         
     }
