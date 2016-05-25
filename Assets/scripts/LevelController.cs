@@ -15,7 +15,7 @@ public class LevelController : MonoBehaviour {
 	void Start () {
 
         cChanger = GameObject.Find("ColorChanger").GetComponent<ColorChanger>();
-        cChanger.setUp();
+        cChanger.SetUp();
 
         objSpawner.spawnNewDrop();
 

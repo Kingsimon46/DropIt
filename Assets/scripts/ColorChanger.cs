@@ -30,18 +30,20 @@ public class ColorChanger : MonoBehaviour {
 
     public void setUp()
     {
+        //Starting blocks to color, 0 is top left block, 1 is top middle etc.
+        int[] startingNum= new int[5];
+        startingNum[0] = 1;
+        startingNum[1] = 3;
+        startingNum[2] = 4;
+        startingNum[3] = 5;
+        startingNum[4] = 7;
+        
+        for (int i = 0; i < startingNum.Length; i++){
+            int rand = Random.Range(0, colors.Length);
 
-        //TODO: Randomize color choice
-        platformCC[1].GetComponent<Renderer>().material.color = colors[0].color;
-        colors[0].setActive(true);
-        platformCC[3].GetComponent<Renderer>().material.color = colors[1].color;
-        colors[1].setActive(true);
-        platformCC[4].GetComponent<Renderer>().material.color = colors[2].color;
-        colors[2].setActive(true);
-        platformCC[5].GetComponent<Renderer>().material.color = colors[3].color;
-        colors[3].setActive(true);
-        platformCC[7].GetComponent<Renderer>().material.color = colors[4].color;
-        colors[4].setActive(true);
+            platformCC[startingNum[i]].GetComponent<Renderer>().material.color = colors[rand].color;
+            colors[rand].setActive(true);
+        }
         
     }
 
