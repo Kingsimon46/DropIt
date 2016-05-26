@@ -8,6 +8,8 @@ public class LevelController : MonoBehaviour {
     public ColorChanger cChanger;
     public ObjectSpawner objSpawner;
 
+    public ScoreManager scoreManager;
+
     private int points = 0;
     private int cycleCount = 1;
 
@@ -34,6 +36,7 @@ public class LevelController : MonoBehaviour {
     {
         Debug.Log("Load New Level initated");
         // Call class for adding points
+        scoreManager.AddScore();
         // Call class for increasing cycleCount and difficulty
         // Call ObjectPooler to remove current drop and setup platform for new cicle
         // Call ObjectSpawner to spawn new drop
