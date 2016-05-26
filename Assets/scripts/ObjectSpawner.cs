@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour {
-
-    public GameObject ObjectToSpawn;
+    
     public Transform generationPoint;
     public ObjectPooler theObjectPool;
+    public ColorChanger cChanger;
  
 
     // Use this for initialization
@@ -28,12 +28,12 @@ public class ObjectSpawner : MonoBehaviour {
         //without Objectpooler//
         //Instantiate (ObjectToSpawn, generationPoint.transform.position,transform.rotation);
 
-        GameObject newObject = theObjectPool.GetPooledObject();
-        newObject.transform.position = generationPoint.transform.position;
-        newObject.transform.rotation = generationPoint.transform.rotation;
-       
-        newObject.SetActive(true);
-    }
-       
+        GameObject newDrop = theObjectPool.GetPooledObject();
+        newDrop.transform.position = generationPoint.transform.position;
+        newDrop.transform.rotation = generationPoint.transform.rotation;
 
+        cChanger.ChangeColorOfDrop(newDrop);
+
+        newDrop.SetActive(true);
+    }
 }

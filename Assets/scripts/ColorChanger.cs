@@ -8,13 +8,14 @@ public class ColorChanger : MonoBehaviour {
     //array for the colors, public so that u can set them in the inspector from within Unity.
     //public Color[] colors;
 
-    // I don't get that var name :P
-    public GameObject objDatChangeColor;
+    public GameObject dropCube;
     
     public GameObject[] platformCC = new GameObject[9];
-    public PlatformColor[] colors = new PlatformColor[9];
     public Color32[] availColors = new Color32[9];
-    
+    public PlatformColor[] colors = new PlatformColor[9];
+
+    private List<Color32> usedColors = new List<Color32>();
+
     void Start () {
         
         Debug.Log("Start Color");
@@ -39,9 +40,7 @@ public class ColorChanger : MonoBehaviour {
         startingNum[2] = 4;
         startingNum[3] = 5;
         startingNum[4] = 7;
-
-        List<Color32> usedColors = new List<Color32>();
-
+        
         for (int i = 0; i < startingNum.Length; i++){
 
             Color32 randColor;
@@ -49,25 +48,19 @@ public class ColorChanger : MonoBehaviour {
 
             do
             {
-
                 rand = Random.Range(0, colors.Length);
                 randColor = colors[rand].color;
-
             } while (usedColors.Contains(randColor));
             
-
             usedColors.Add(randColor);
             platformCC[startingNum[i]].GetComponent<Renderer>().material.color = randColor;
             colors[rand].setActive(true);
-            
         }
-        
     }
 
     // Returns a random color value that is currently active on the platform
     public void GetRandColor()
     {
-
         for (int i = 0; i < availColors.Length; i++)
         {
            /* if (availColors[i].isActive())
@@ -78,16 +71,14 @@ public class ColorChanger : MonoBehaviour {
         }
         
     }
-   
 
-	public void ChangeColorOnDrop()
-    {
-        //ObjDatChangeColor.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
-       
-      
+	public void ChangeColorOfDrop(GameObject drop)
+    {        
+        int rand = Random.Range(0, usedColors.Count);
+        Color32 randColor = usedColors[rand];
 
+        drop.GetComponent<Renderer>().sharedMaterial.color = randColor;
     }
-
 
     void ChangeCcColors()
     {

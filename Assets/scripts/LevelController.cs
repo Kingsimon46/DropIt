@@ -37,12 +37,14 @@ public class LevelController : MonoBehaviour {
         // Call class for increasing cycleCount and difficulty
         // Call ObjectPooler to remove current drop and setup platform for new cicle
         // Call ObjectSpawner to spawn new drop
+
+
         obj.SetActive(false);
+
         objSpawner.spawnNewDrop();
 
-
-
     }
+
     void increaseDifficulty()
     {
 
