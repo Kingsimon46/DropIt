@@ -4,10 +4,6 @@ using System.Collections.Generic;
 
 public class ColorChanger : MonoBehaviour {
 
-
-    //array for the colors, public so that u can set them in the inspector from within Unity.
-    //public Color[] colors;
-
     public GameObject dropCube;
     
     public GameObject[] platformCC = new GameObject[9];
@@ -18,17 +14,12 @@ public class ColorChanger : MonoBehaviour {
 
     void Start () {
         
-        Debug.Log("Start Color");
+        //Debug.Log("Start Color");
         for (int i = 0; i < availColors.Length; i++)
         {
-            Debug.Log(i + " Color");
+            //Debug.Log(i + " Color");
             colors[i] = new PlatformColor(availColors[i]);
         }
-
-        /*
-        //Start Changing the Colors. 1f= after 1second ingame it starts, 1f = every 1 second after it is going to change again.
-        InvokeRepeating("ChangeCcColors", 1f, 1f);
-        */
     }
 
     public void SetUp()
@@ -79,12 +70,10 @@ public class ColorChanger : MonoBehaviour {
 
         drop.GetComponent<Renderer>().sharedMaterial.color = randColor;
 
-
-        ChangePlatformColor(drop);
     }
 
     
-    void ChangePlatformColor(GameObject drop)
+    public void ChangePlatformColor(GameObject drop)
     {
         int collidedPlatformIndex = 0;
         Color32 dropColor = drop.GetComponent<Renderer>().sharedMaterial.color;
@@ -101,7 +90,14 @@ public class ColorChanger : MonoBehaviour {
             }
         }while (collidedPlatformCube == null);
 
-        // check if collidedPlatformCube == null
+        if (collidedPlatformCube != null)
+        {
+            Debug.Log("WUUP " + collidedPlatformIndex);
+        }
+        else
+        {
+            // Throw error, shouldn't happen.
+        }
         // remove color from platformCube and from usedColors array, setActive(false) for PlatformColor
         // Depending on the collidedPlatformIndex, move other colors around and spawn new ones
 

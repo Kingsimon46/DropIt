@@ -43,7 +43,7 @@ public class LevelController : MonoBehaviour {
 
 
         obj.SetActive(false);
-
+        
         objSpawner.spawnNewDrop();
 
     }

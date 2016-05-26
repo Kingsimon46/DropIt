@@ -25,15 +25,14 @@ public class ObjectSpawner : MonoBehaviour {
     public void spawnNewDrop()
     {
         transform.position = new Vector3(generationPoint.transform.position.x, generationPoint.transform.position.y, generationPoint.transform.position.z);
-        //without Objectpooler//
-        //Instantiate (ObjectToSpawn, generationPoint.transform.position,transform.rotation);
-
+        
         GameObject newDrop = theObjectPool.GetPooledObject();
         newDrop.transform.position = generationPoint.transform.position;
         newDrop.transform.rotation = generationPoint.transform.rotation;
-
+        
         cChanger.ChangeColorOfDrop(newDrop);
-
+        
         newDrop.SetActive(true);
+        // Set as active in ObjectPooler
     }
 }
