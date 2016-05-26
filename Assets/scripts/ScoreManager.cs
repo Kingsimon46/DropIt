@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour {
     public float highScoreCount;
 
     public float pointsPerDrop;
+
 	// Use this for initialization
 	void Start () {
 	
