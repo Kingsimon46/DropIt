@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ObjectSpawner : MonoBehaviour {
     
     public Transform generationPoint;
-    public ObjectPooler theObjectPool;
+    public ObjectPooler objPooler;
     public ColorChanger cChanger;
  
 
@@ -26,13 +26,16 @@ public class ObjectSpawner : MonoBehaviour {
     {
         transform.position = new Vector3(generationPoint.transform.position.x, generationPoint.transform.position.y, generationPoint.transform.position.z);
         
-        GameObject newDrop = theObjectPool.GetPooledObject();
+        GameObject newDrop = objPooler.GetPooledObject();
         newDrop.transform.position = generationPoint.transform.position;
         newDrop.transform.rotation = generationPoint.transform.rotation;
         
         cChanger.ChangeColorOfDrop(newDrop);
-        
-        newDrop.SetActive(true);
-        // Set as active in ObjectPooler
+        objPooler.AddActiveDrop(newDrop);
+    }
+
+    public void setDropDeactive(GameObject oldDrop)
+    {
+        objPooler.RemoveOldestDrop();
     }
 }

@@ -50,49 +50,40 @@ public class ColorChanger : MonoBehaviour {
     }
 
     // Returns a random color value that is currently active on the platform
-    public void GetRandColor()
+    public Color32 GetRandColor()
     {
-        for (int i = 0; i < availColors.Length; i++)
-        {
-           /* if (availColors[i].isActive())
-            {
-                return availColors[i].color;
-            }
-            */
-        }
-        
+        int rand = Random.Range(0, usedColors.Count);
+        Color32 randColor = usedColors[rand];
+
+        return randColor;
     }
 
 	public void ChangeColorOfDrop(GameObject drop)
     {        
-        int rand = Random.Range(0, usedColors.Count);
-        Color32 randColor = usedColors[rand];
-
-        drop.GetComponent<Renderer>().sharedMaterial.color = randColor;
-
+        drop.GetComponent<Renderer>().sharedMaterial.color = GetRandColor();
     }
 
     
     public void ChangePlatformColor(GameObject drop)
     {
-        int collidedPlatformIndex = 0;
+        int platformIndex = 0;
         Color32 dropColor = drop.GetComponent<Renderer>().sharedMaterial.color;
-        GameObject collidedPlatformCube = null;
+        GameObject platformCube = null;
 
         do {
-            if(platformCC[collidedPlatformIndex].GetComponent<Renderer>().material.color == dropColor)
+            if(platformCC[platformIndex].GetComponent<Renderer>().material.color == dropColor)
             {
-                collidedPlatformCube = platformCC[collidedPlatformIndex];
+                platformCube = platformCC[platformIndex];
             }
             else
             {
-                collidedPlatformIndex++;
+                platformIndex++;
             }
-        }while (collidedPlatformCube == null);
+        }while (platformCube == null);
 
-        if (collidedPlatformCube != null)
+        if (platformCube != null)
         {
-            Debug.Log("WUUP " + collidedPlatformIndex);
+            Debug.Log("WUUP " + platformIndex);
         }
         else
         {

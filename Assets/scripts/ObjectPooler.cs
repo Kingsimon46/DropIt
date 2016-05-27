@@ -9,20 +9,16 @@ public class ObjectPooler : MonoBehaviour {
 
     public int pooledAmount;
 
-    List<GameObject> pooledObjects;
-    List<GameObject> activeDrops;
+    List<GameObject> pooledObjects = new List<GameObject>();
+    List<GameObject> activeDrops = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-        pooledObjects = new List<GameObject>();
-        activeDrops = new List<GameObject>();
-
         for (int i = 0; i < pooledAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(pooledObject);
             obj.SetActive(false);
             pooledObjects.Add(obj);
-
         }
     }
 
@@ -44,9 +40,10 @@ public class ObjectPooler : MonoBehaviour {
     }
 
     // Adds a new active drop-gameobject to the activeDrops list
-    void AddActiveDrop()
+    public void AddActiveDrop(GameObject newDrop)
     {
-
+        newDrop.SetActive(true);
+        activeDrops.Add(newDrop);
     }
 
     //Returns all currently active drops
@@ -58,6 +55,7 @@ public class ObjectPooler : MonoBehaviour {
     // Removes the oldest drop from the "currently active list"
     public void RemoveOldestDrop()
     {
-
+        activeDrops[0].SetActive(false);
+        activeDrops.RemoveAt(0);
     }
 }
