@@ -6,7 +6,8 @@ public class ScoreManager : MonoBehaviour {
 
     public Text scoreText;
     public Text highScoreText;
-
+    public Text inDeathM_highScoreText;
+    public Text inDeathM_scoreText;
     private float scoreCount;
     private float highScoreCount;
 
@@ -23,16 +24,16 @@ public class ScoreManager : MonoBehaviour {
 	void Update () {
 
         scoreText.text = "Score: " + scoreCount;
-
-        if(scoreCount > highScoreCount)
+        inDeathM_scoreText.text = "Score: " + scoreCount;
+        if (scoreCount > highScoreCount)
         {
             highScoreCount = scoreCount;
             PlayerPrefs.SetFloat("HighScore", highScoreCount);
         }
 
         highScoreText.text = "High Score: " + highScoreCount;
-
-	}
+        inDeathM_highScoreText.text = "High Score: " + highScoreCount;
+    }
     
     public void AddScore()
     {
