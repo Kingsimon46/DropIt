@@ -38,7 +38,7 @@ public class DropCollision : MonoBehaviour {
             
 
         }
-        else if (col.transform.GetComponent<Renderer>().material.color != this.GetComponent<Renderer>().material.color)
+        else
         {
             // failed, wrong color
             Debug.Log("Fail!");

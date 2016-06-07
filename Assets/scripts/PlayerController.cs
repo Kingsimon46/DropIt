@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
 
     private Touch initialTouch = new Touch();
     private bool hasSwiped = false;
-    // Use this for initialization
+
+    private Vector3 defaultPosition;
+
     void Start()
     {
-
+        defaultPosition = gameObject.transform.position;
         gameIsActive = true;
 
     }
@@ -129,5 +131,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void resetPlatformPosition()
+    {
+        gameObject.transform.position = defaultPosition;
     }
 }

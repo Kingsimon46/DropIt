@@ -12,9 +12,10 @@ public class ColorChanger : MonoBehaviour {
 
     public List<Color32> usedColors = new List<Color32>();
 
+    public int dropsForFirstLevel;
+
     void Start () {
         
-        //Debug.Log("Start Color");
         for (int i = 0; i < availColors.Length; i++)
         {
             //Debug.Log(i + " Color");
@@ -63,45 +64,65 @@ public class ColorChanger : MonoBehaviour {
         drop.GetComponent<Renderer>().sharedMaterial.color = GetRandColor();
     }
 
-    
-    public void ChangePlatformColor(GameObject drop)
+    public void ChangePlatformColor(int sucessfulDrops)
     {
-        int platformIndex = 0;
-        Color32 dropColor = drop.GetComponent<Renderer>().sharedMaterial.color;
-        GameObject platformCube = null;
+        usedColors.Clear();
 
-        do {
-            if(platformCC[platformIndex].GetComponent<Renderer>().material.color == dropColor)
-            {
-                platformCube = platformCC[platformIndex];
-            }
-            else
-            {
-                platformIndex++;
-            }
-        }while (platformCube == null);
-
-        if (platformCube != null)
+        if(sucessfulDrops < dropsForFirstLevel)
         {
-            Debug.Log("WUUP " + platformIndex);
+            int[] startingNum = new int[5];
+            startingNum[0] = 1;
+            startingNum[1] = 3;
+            startingNum[2] = 4;
+            startingNum[3] = 5;
+            startingNum[4] = 7;
+
+            for (int i = 0; i < startingNum.Length; i++)
+            {
+
+                Color32 randColor;
+                int rand;
+
+                do
+                {
+                    rand = Random.Range(0, colors.Length);
+                    randColor = colors[rand].color;
+                } while (usedColors.Contains(randColor));
+
+                usedColors.Add(randColor);
+                platformCC[startingNum[i]].GetComponent<Renderer>().material.color = randColor;
+                colors[rand].setActive(true);
+            }
         }
         else
         {
-            // Throw error, shouldn't happen.
+            int[] startingNum = new int[9];
+            startingNum[0] = 0;
+            startingNum[1] = 1;
+            startingNum[2] = 2;
+            startingNum[3] = 3;
+            startingNum[4] = 4;
+            startingNum[5] = 5;
+            startingNum[6] = 6;
+            startingNum[7] = 7;
+            startingNum[8] = 8;
+
+            for (int i = 0; i < startingNum.Length; i++)
+            {
+
+                Color32 randColor;
+                int rand;
+
+                do
+                {
+                    rand = Random.Range(0, colors.Length);
+                    randColor = colors[rand].color;
+                } while (usedColors.Contains(randColor));
+
+                usedColors.Add(randColor);
+                platformCC[startingNum[i]].GetComponent<Renderer>().material.color = randColor;
+                colors[rand].setActive(true);
+            }
         }
-        // remove color from platformCube and from usedColors array, setActive(false) for PlatformColor
-        // Depending on the collidedPlatformIndex, move other colors around and spawn new ones
-
-
-        int hitColor = usedColors.IndexOf(dropColor);
-
-        //temp
-        //usedColors.RemoveAt(hitColor);
-
-
-
     }
 }
-    
-  
-

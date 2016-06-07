@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class LevelController : MonoBehaviour {
 
     public static LevelController instance;
-    public PlayerController PlayerController;
+    public PlayerController playerController;
     public ColorChanger cChanger;
     public ObjectSpawner objSpawner;
 
@@ -13,8 +13,9 @@ public class LevelController : MonoBehaviour {
     public HealthManager hManager;
     public DeathMenu theDeathScreen;
 
-    private int points = 0;
-    private int cycleCount = 1;
+    public int successfulDrops = 0;
+
+    private float gravitySpeed;
 
     public Text scoreTextToDisable;
     public Text highScoreTextToDisable;
@@ -24,42 +25,48 @@ public class LevelController : MonoBehaviour {
 
         cChanger = GameObject.Find("ColorChanger").GetComponent<ColorChanger>();
         cChanger.SetUp();
-        
-        objSpawner.spawnNewDrop();
-    
 
+        gravitySpeed = 1f;
+
+        objSpawner.spawnNewDrop(gravitySpeed);
     }
 	
 	// Update is called once per frame
 	void Update () {
-       
         if(hManager.lives <= 0)
         {
             GameOver();
         }
-        
 	}
 
     // Called after good color-check
     public void StartNewCycle(GameObject oldDrop)
     {
         Debug.Log("Load New Level initated");
+
+        playerController.resetPlatformPosition();
+
         // Call class for adding points
         scoreManager.AddScore();
+        successfulDrops++;
+        IncreaseDifficulty();
+
         // Call class for increasing cycleCount and difficulty
         // Call ObjectPooler to remove current drop and setup platform for new cicle
         // Call ObjectSpawner to spawn new drop
-        
+
         objSpawner.setDropDeactive(oldDrop);
-        
-        objSpawner.spawnNewDrop();
+
+        cChanger.ChangePlatformColor(successfulDrops);
+
+        objSpawner.spawnNewDrop(gravitySpeed);
 
     }
 
     void GameOver()
     {
         //deactivate gamecontrolls.
-        PlayerController.gameIsActive = false;
+        playerController.gameIsActive = false;
         // disable active score texts.
         scoreTextToDisable.gameObject.SetActive(false);
         highScoreTextToDisable.gameObject.SetActive(false);
@@ -67,13 +74,11 @@ public class LevelController : MonoBehaviour {
         
         StartCoroutine(wait());
         StopCoroutine(wait());
-
     }
 
-
-    void increaseDifficulty()
+    void IncreaseDifficulty()
     {
-
+        gravitySpeed =+ 1f;
     }
     
     IEnumerator wait()
