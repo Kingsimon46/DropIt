@@ -78,7 +78,7 @@ public class LevelController : MonoBehaviour {
 
     void IncreaseDifficulty()
     {
-        gravitySpeed =+ 5f;
+        gravitySpeed = gravitySpeed + 0.2f;
     }
     
     IEnumerator wait()

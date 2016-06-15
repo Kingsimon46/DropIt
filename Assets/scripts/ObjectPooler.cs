@@ -49,7 +49,7 @@ public class ObjectPooler : MonoBehaviour {
     //Returns all currently active drops
     public List<GameObject> GetActiveDrops()
     {
-        return new List<GameObject>();
+        return activeDrops;
     }
 
     // Removes the oldest drop from the "currently active list"
